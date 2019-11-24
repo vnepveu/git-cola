@@ -9,6 +9,8 @@ from ..cmd import Command
 
 
 AUTOTEMPLATE = 'cola.autoloadcommittemplate'
+AUTOFETCH = 'cola.autofetchremote'
+NOTIFY_FETCH = 'cola.notifyfetchremote'
 BACKGROUND_EDITOR = 'cola.backgroundeditor'
 BLAME_VIEWER = 'cola.blameviewer'
 BOLD_HEADERS = 'cola.boldheaders'
@@ -49,6 +51,7 @@ class Defaults(object):
     """Read-only class for holding defaults that get overridden"""
     # These should match Git's defaults for git-defined values.
     autotemplate = False
+    auto_fetch_remote = False
     blame_viewer = 'git gui blame'
     bold_headers = False
     check_conflicts = True
@@ -67,6 +70,7 @@ class Defaults(object):
     merge_keep_backup = True
     merge_summary = True
     merge_verbosity = 2
+    notify_fetch_remote = False
     save_window_settings = True
     safe_mode = False
     autocomplete_paths = True

@@ -125,6 +125,8 @@ class RepoFormWidget(FormWidget):
         self.merge_verbosity = standard.SpinBox(value=5, maxi=5)
         self.merge_summary = qtutils.checkbox(checked=True)
         self.autotemplate = qtutils.checkbox(checked=False)
+        self.autofetch_remote = qtutils.checkbox(checked=False)
+        self.notify_fetch_remote = qtutils.checkbox(checked=False)
         self.merge_diffstat = qtutils.checkbox(checked=True)
         self.display_untracked = qtutils.checkbox(checked=True)
         self.show_path = qtutils.checkbox(checked=True)
@@ -150,6 +152,10 @@ class RepoFormWidget(FormWidget):
         self.add_row(N_('Summarize Merge Commits'), self.merge_summary)
         self.add_row(N_('Automatically Load Commit Message Template'),
                      self.autotemplate)
+        self.add_row(N_('Automatically fetch remote repositories every 5 minutes'),
+                     self.autofetch_remote)
+        self.add_row(N_('Notify when new commits are fetched from remote'),
+                     self.notify_fetch_remote)
         self.add_row(N_('Show Full Paths in the Window Title'), self.show_path)
         self.add_row(N_('Show Diffstat After Merge'), self.merge_diffstat)
         self.add_row(N_('Display Untracked Files'), self.display_untracked)
@@ -160,6 +166,8 @@ class RepoFormWidget(FormWidget):
         self.set_config({
             prefs.AUTOTEMPLATE:
                 (self.autotemplate, Defaults.autotemplate),
+            prefs.AUTOFETCH:
+                (self.autofetch_remote, Defaults.auto_fetch_remote),
             prefs.CHECKCONFLICTS:
                 (self.check_conflicts, Defaults.check_conflicts),
             prefs.DIFFCONTEXT: (self.diff_context, Defaults.diff_context),
@@ -172,6 +180,8 @@ class RepoFormWidget(FormWidget):
             prefs.MERGE_SUMMARY: (self.merge_summary, Defaults.merge_summary),
             prefs.MERGE_VERBOSITY:
                 (self.merge_verbosity, Defaults.merge_verbosity),
+            prefs.NOTIFY_FETCH:
+                (self.notify_fetch_remote, Defaults.notify_fetch_remote),
             prefs.SAFE_MODE: (self.safe_mode, Defaults.safe_mode),
             prefs.AUTOCOMPLETE_PATHS: (
                 self.autocomplete_paths, Defaults.autocomplete_paths),

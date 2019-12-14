@@ -353,13 +353,8 @@ class RemoteInfoThread(QtCore.QThread):
         if remote is None:
             return
         git = self.context.git
-        _, out, err = git.remote('show', remote)
-        # This call takes a long time and we may have selected a
-        # different remote...
-        if remote == self.remote:
-            self.result.emit(out + err)
-        else:
-            self.run()
+        _, out, err = git.remote('show', '-n', remote)
+        self.result.emit(out + err)
 
 
 class AddRemoteDialog(QtWidgets.QDialog):

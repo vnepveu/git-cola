@@ -9,6 +9,7 @@ Thanks
 * Adil
 * AJ Bagwell
 * akontsevich
+* Aleksey Kontsevich
 * Alex Chernetz
 * Alex Gulyás
 * Alexander Kozienko
@@ -22,6 +23,7 @@ Thanks
 * armandg
 * Arthur Coelho
 * Audrius Karabanovas
+* Balázs Meskó
 * balping
 * Barış ÇELİK
 * Barry Roberts
@@ -214,6 +216,7 @@ Thanks
 * Vaibhav Sagar
 * Vaiz
 * Ved Vyas
+* Victor Gambier
 * Victor Nepveu
 * Victorhck
 * Ville Skyttä

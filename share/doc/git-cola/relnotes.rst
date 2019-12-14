@@ -5,7 +5,7 @@ Releases
 Latest Release
 ==============
 
-:ref:`v3.5 <v3.5>` is the latest stable release.
+:ref:`v3.6 <v3.6>` is the latest stable release.
 
 Development version
 ===================
@@ -14,10 +14,28 @@ Clone the git-cola repo to get the latest development version:
 
 ``git clone git://github.com/git-cola/git-cola.git``
 
+.. _v3.7:
+
+Fixes
+-----
+* The "Recent Repositories" limit was off by one, and now correctly
+  remembers the configured number of repositories in the menu.
+  (`#1024 <https://github.com/git-cola/git-cola/pull/1024>`_)
+
+* The "revert" action in the DAG and other tools now uses
+  ``git revert --no-edit``, which avoids launching an editor
+  when reverting the commit.  Use `Ctrl+m` in the commit message
+  editor after reverting a commit to rewrite its commit message.
+  (`#1020 <https://github.com/git-cola/git-cola/issues/1020>`_)
+
 .. _v3.6:
 
 Usability, bells and whistles
 -----------------------------
+* The remote editor is much faster since it no longer queries
+  remotes, and uses the cached information instead.
+  (`#986 <https://github.com/git-cola/git-cola/issues/986>`_)
+
 * Commit message templates can now be loaded automatically by setting
   ``git config cola.autoloadcommittemplate true``.
   (`#1013 <https://github.com/git-cola/git-cola/pull/1013>`_)
@@ -51,6 +69,7 @@ Translations
 ------------
 * Updated Hungarian translation.
   (`#1005 <https://github.com/git-cola/git-cola/pull/1005>`_)
+  (`#1018 <https://github.com/git-cola/git-cola/pull/1018>`_)
 
 * Updated Turkish translation.
   (`#1003 <https://github.com/git-cola/git-cola/pull/1003>`_)

@@ -3,6 +3,7 @@ from __future__ import division, absolute_import, unicode_literals
 import os
 import re
 import sys
+import datetime
 from fnmatch import fnmatch
 from io import StringIO
 
@@ -1532,12 +1533,19 @@ class OpenParentDir(OpenDefaultApp):
         dirs = [(dirname or core.getcwd()) for dirname in dirnames]
         core.fork([self.launcher] + dirs)
 
+from .scheduler import SharedScheduler
+
+def hello(origin):
+    print("Hello from {}".format(origin))
+
+
 
 class OpenNewRepo(ContextCommand):
     """Launches git-cola on a repo."""
 
     def __init__(self, context, repo_path):
         super(OpenNewRepo, self).__init__(context)
+        self.shared_scheduler = SharedScheduler(hello, "dede")
         self.repo_path = repo_path
 
     def do(self):
@@ -1549,6 +1557,8 @@ class OpenRepo(EditModel):
 
     def __init__(self, context, repo_path):
         super(OpenRepo, self).__init__(context)
+        self.shared_scheduler = SharedScheduler(context, None,"OpenRepo")
+        # self.shared_scheduler.execute_job_now()
         self.repo_path = repo_path
         self.new_mode = self.model.mode_none
         self.new_diff_text = ''

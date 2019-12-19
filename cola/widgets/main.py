@@ -58,7 +58,15 @@ from . import standard
 from . import status
 from . import stash
 from . import toolbar
+from ..scheduler import SharedScheduler
 
+i = 0
+def hello(origin):
+
+    global i
+    print("This is a Victor task")
+    print("{} Hello from {}".format(i, origin))
+    i += 1
 
 class MainView(standard.MainWindow):
     config_actions_changed = Signal(object)
@@ -75,6 +83,11 @@ class MainView(standard.MainWindow):
         self.settings = settings
         self.prefs_model = prefs_model = prefs.PreferencesModel(context)
         self.toolbar_state = toolbar.ToolBarState(context, self)
+
+        # self.victor_task = qtutils.SimpleTask(self, hello, "out_there")
+        self.sch = SharedScheduler(context, parent, "main")
+        # self.context.runtask = qtutils.RunTask(parent=parent)
+        # self.context.runtask.start(self.victor_task)
 
         # The widget version is used by import/export_state().
         # Change this whenever dockwidgets are removed.
@@ -161,6 +174,9 @@ class MainView(standard.MainWindow):
         self.diffeditor = self.diffviewer.text
         titlebar = self.diffdock.titleBarWidget()
         titlebar.add_corner_widget(self.diffviewer.options)
+        # Initialize auto fetching remote repository
+        # self.shared_scheduler = SharedScheduler(context, "main.py")
+        # self.shared_scheduler.execute_job_now()
 
         # All Actions
         add_action = qtutils.add_action

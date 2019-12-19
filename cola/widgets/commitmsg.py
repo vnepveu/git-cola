@@ -52,7 +52,7 @@ class CommitMessageEditor(QtWidgets.QFrame):
         self.signoff_action.setToolTip(N_('Sign off on this commit'))
 
         self.commit_action = qtutils.add_action(
-            self, N_('Commit@@verb'), self.commit, hotkeys.COMMIT)
+            self, N_('Commit@@verb'), self.commit, hotkeys.APPLY)
         self.commit_action.setIcon(icons.commit())
         self.commit_action.setToolTip(N_('Commit staged changes'))
         self.clear_action = qtutils.add_action(
@@ -457,7 +457,8 @@ class CommitMessageEditor(QtWidgets.QFrame):
 
         # Warn that amending published commits is generally bad
         amend = get(self.amend_action)
-        if (amend and self.model.is_commit_published() and
+        check_published = prefs.check_published_commits(context)
+        if (amend and check_published and self.model.is_commit_published() and
                 not Interaction.confirm(
                     N_('Rewrite Published Commit?'),
                     N_('This commit has already been published.\n'

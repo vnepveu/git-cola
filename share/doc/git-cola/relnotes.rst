@@ -16,8 +16,32 @@ Clone the git-cola repo to get the latest development version:
 
 .. _v3.7:
 
+Usability, bells and whistles
+-----------------------------
+* Stashes can now be applied using the `Ctrl + Enter` hotkey, popped with the
+  `Ctrl + Backspace` hotkey, and dropped with the `Ctrl + Shift + Backspace`
+  hotkey when inside the stash dialog.  This enables a keyboard-centric
+  mouse-free workflow when using the stash dialog.
+
+* When amending a commit, `git cola` will check whether the commit has been
+  published to a remote branch using ``git branch -r --contains HEAD``.
+  This command can be slow when operating on a repository with many
+  remote branches.  The new `cola.checkpublishedcommits` configuration
+  variable allows you to opt-out of this check, which improves performance
+  when amending a commit.  The settings widget exposes this variable as,
+  "Check Published Commits when Amending".
+  (`#1021 <https://github.com/git-cola/git-cola/issues/1021>`_)
+  (`#1027 <https://github.com/git-cola/git-cola/pull/1027>`_)
+
 Fixes
 -----
+* The inotify filesystem monitor now handles
+  `OSError: [Errno 24] Too many open files` errors by disabling inotify.
+  (`#1015 <https://github.com/git-cola/git-cola/issues/1015>`_)
+
+* Typos in various documentation files have been fixed.
+  (`#1025 <https://github.com/git-cola/git-cola/pull/1025>`_)
+
 * The "Recent Repositories" limit was off by one, and now correctly
   remembers the configured number of repositories in the menu.
   (`#1024 <https://github.com/git-cola/git-cola/pull/1024>`_)
